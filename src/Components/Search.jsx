@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EmployeeHeader from './EmployeeHeader'
 
 const Search = () => {
+
+  const [input, changeInput] = useState({
+
+    firstName: ""
+
+  });
+
+  const readValue=(e)=>{
+    changeInput({...input,[e.target.name]:e.target.value})
+  }
+
+  const submitValue=()=>{
+    console.log(input)
+  }
   return (
     <div>
         <EmployeeHeader/>
@@ -11,10 +25,10 @@ const Search = () => {
                     <div className="row g-3">
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <label htmlFor="" className="form-label">First Name</label>
-                            <input type="text" className="form-control" />
+                            <input type="text" className="form-control" name='firstName' value={input.firstName} onChange={readValue}/>
                         </div>
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                            <button className="btn btn-success">Search</button>
+                            <button className="btn btn-success" onClick={submitValue}>Search</button>
                         </div>
                     </div>
                 </div>
@@ -24,4 +38,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default Search;
